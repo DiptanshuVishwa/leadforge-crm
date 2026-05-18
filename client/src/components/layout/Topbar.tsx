@@ -1,4 +1,4 @@
-import { Bell, Search, User as UserIcon } from 'lucide-react';
+import { Bell } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 
 export const Topbar = () => {

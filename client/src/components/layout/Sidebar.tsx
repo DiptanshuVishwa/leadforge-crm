@@ -4,7 +4,7 @@ import { useAuthStore } from '../../store/authStore';
 import { useThemeStore } from '../../store/themeStore';
 
 export const Sidebar = () => {
-  const { user, logout } = useAuthStore();
+  const { logout } = useAuthStore();
   const { isDarkMode, toggleTheme } = useThemeStore();
   const location = useLocation();
 
