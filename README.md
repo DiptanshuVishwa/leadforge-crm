@@ -1,129 +1,153 @@
-# Smart Leads Dashboard
+# LeadForge CRM
 
-A production-ready full-stack MERN application for managing leads in a CRM system.
+A full-stack Lead Management Dashboard built using the MERN stack with TypeScript, JWT authentication, RBAC, advanced filtering, pagination, CSV export, and production-ready deployment.
 
-## 🚀 Features
+## Live Demo
 
-- **Authentication**: Secure JWT-based auth with role-based access control (Admin & Sales)
-- **Dashboard**: High-level overview with analytics and recent activities
-- **Lead Management**: Full CRUD operations for leads
-- **Advanced Filtering & Search**: Debounced search, status/source filters
-- **Export to CSV**: Download leads data in CSV format
-- **Dark Mode**: Persistent dark mode support
-- **Responsive UI**: Built with Tailwind CSS and Framer Motion for a premium look
-- **Dockerized**: Ready to be deployed with Docker and Docker Compose
+Frontend: [https://leadforge-crm-azure.vercel.app/](https://leadforge-crm-azure.vercel.app/)
 
-## 🛠️ Tech Stack
+Backend: [https://leadforge-crm.onrender.com](https://leadforge-crm.onrender.com)
 
-### Frontend
-- React.js + TypeScript
-- Vite
-- TailwindCSS
-- React Router DOM
-- TanStack Query (React Query)
-- Zustand
-- React Hook Form + Zod
-- Framer Motion
+---
 
-### Backend
-- Node.js + Express.js
-- TypeScript
-- MongoDB + Mongoose
-- JSON Web Tokens (JWT)
-- bcryptjs
-- Zod (Validation)
+# Demo Credentials
 
-## 📦 Getting Started
+## Admin
 
-### Prerequisites
-- Node.js (v18+)
-- MongoDB
-- Docker (optional)
+* Email: [diptanshu@gmail.com](mailto:diptanshu@gmail.com)
+* Password: 123456789
 
-### Environment Variables
+## Employee
 
-**Backend (`server/.env`)**
+* Email: [employee@gmail.com](mailto:employee@gmail.com)
+* Password: 123456789
+
+---
+
+# Features
+
+* JWT Authentication
+* Role-Based Access Control (Admin & Employee)
+* Lead CRUD Operations
+* Search & Filtering
+* Backend Pagination
+* CSV Export
+* Responsive UI
+* Dark Mode
+* Protected Routes
+* Docker Setup
+
+---
+
+# Tech Stack
+
+## Frontend
+
+* React.js
+* TypeScript
+* Tailwind CSS
+* React Query
+* Zustand
+* Axios
+
+## Backend
+
+* Node.js
+* Express.js
+* TypeScript
+* MongoDB Atlas
+* Mongoose
+* JWT
+* bcryptjs
+
+## Deployment
+
+* Vercel
+* Render
+* MongoDB Atlas
+
+---
+
+# Environment Variables
+
+## Backend (`server/.env`)
+
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/smart-leads
-JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+MONGODB_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
 JWT_EXPIRES_IN=7d
 CLIENT_URL=http://localhost:5173
 ```
 
-**Frontend (`client/.env`)**
+## Frontend (`client/.env`)
+
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
-### Manual Setup
+---
 
-1. **Clone and Install dependencies**
-   ```bash
-   # Backend
-   cd server
-   npm install
+# Local Setup
 
-   # Frontend
-   cd client
-   npm install
-   ```
+## Clone Repository
 
-2. **Run Backend Seed (Optional)**
-   ```bash
-   cd server
-   npm run seed
-   ```
-   *Creates an Admin (admin@example.com) and a Sales user (sales@example.com) with password `password123`.*
+```bash
+git clone https://github.com/DiptanshuVishwa/leadforge-crm.git
+cd leadforge-crm
+```
 
-3. **Start Development Servers**
-   ```bash
-   # Terminal 1 - Backend
-   cd server
-   npm run dev
+## Backend
 
-   # Terminal 2 - Frontend
-   cd client
-   npm run dev
-   ```
+```bash
+cd server
+npm install
+npm run dev
+```
 
-### Docker Setup
+## Frontend
 
-Simply run:
+```bash
+cd client
+npm install
+npm run dev
+```
+
+---
+
+# Docker Setup
+
 ```bash
 docker-compose up --build
 ```
-This will start the backend, frontend (Nginx), and MongoDB in containers.
 
-## 📖 API Documentation
+---
 
-### Auth Endpoints
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/login` - Authenticate user
-- `POST /api/auth/logout` - Logout user
-- `GET /api/auth/me` - Get current logged in user profile
+# API Endpoints
 
-### Leads Endpoints
-- `GET /api/leads` - Get all leads (Supports `page`, `limit`, `search`, `status`, `source`, `sort`)
-- `GET /api/leads/:id` - Get a single lead
-- `POST /api/leads` - Create a new lead (Admin only)
-- `PUT /api/leads/:id` - Update a lead
-- `DELETE /api/leads/:id` - Delete a lead (Admin only)
-- `GET /api/leads/export/csv` - Export filtered leads to CSV (Admin only)
+## Auth
 
-## 🚀 Deployment Guide
+* POST `/api/auth/register`
+* POST `/api/auth/login`
+* POST `/api/auth/logout`
+* GET `/api/auth/me`
 
-### Backend (Render/Railway)
-1. Set up a new Node.js Web Service
-2. Set build command: `npm install && npm run build`
-3. Set start command: `npm start`
-4. Add environment variables.
+## Leads
 
-### Frontend (Vercel)
-1. Import the project and select the `client` directory.
-2. Build command: `npm run build`
-3. Add `VITE_API_BASE_URL` pointing to your deployed backend URL.
+* GET `/api/leads`
+* GET `/api/leads/:id`
+* POST `/api/leads`
+* PUT `/api/leads/:id`
+* DELETE `/api/leads/:id`
+* GET `/api/leads/export/csv`
 
-### Database
-1. Create a cluster on MongoDB Atlas
-2. Add connection string to backend environment variables.
+---
+
+# Author
+
+## Diptanshu Vishwa
+
+GitHub: [https://github.com/DiptanshuVishwa](https://github.com/DiptanshuVishwa)
+
+LinkedIn: [https://www.linkedin.com/in/diptanshu-vishwa-0548b0341/](https://www.linkedin.com/in/diptanshu-vishwa-0548b0341/)
