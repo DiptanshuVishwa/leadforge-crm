@@ -13,24 +13,31 @@ export const protect = async (
   try {
     let token;
 
+    console.log('[Auth Middleware] Checking for token... Headers:', !!req.headers.authorization, 'Cookies:', !!req.cookies?.jwt);
+
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith('Bearer')
     ) {
       token = req.headers.authorization.split(' ')[1];
+      console.log('[Auth Middleware] Found token in Bearer header');
     } else if (req.cookies.jwt) {
       token = req.cookies.jwt;
+      console.log('[Auth Middleware] Found token in cookie');
     }
 
     if (!token) {
+      console.log('[Auth Middleware] No token found! Denying access.');
       return next(new AppError('Not authorized, no token', 401));
     }
 
     const decoded = jwt.verify(token, env.JWT_SECRET) as { id: string };
+    console.log('[Auth Middleware] Token verified for user ID:', decoded.id);
 
     const user = await User.findById(decoded.id).select('-password');
 
     if (!user) {
+      console.log('[Auth Middleware] User not found for ID:', decoded.id);
       return next(new AppError('The user belonging to this token no longer exists.', 401));
     }
 
@@ -39,7 +46,8 @@ export const protect = async (
       role: user.role,
     };
     next();
-  } catch (error) {
+  } catch (error: any) {
+    console.log('[Auth Middleware] Token validation failed:', error.message);
     return next(new AppError('Not authorized, token failed', 401));
   }
 };
