@@ -15,18 +15,16 @@ const signToken = (id: string) => {
 const createSendToken = (user: IUser, statusCode: number, res: Response) => {
   const token = signToken(user.id);
   
-  const isProduction = process.env.NODE_ENV === 'production' || env.CLIENT_URL.includes('vercel');
-
   const cookieOptions = {
     expires: new Date(
       Date.now() + parseInt(env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? 'none' as const : 'lax' as const,
+    secure: true,
+    sameSite: 'none' as const,
   };
 
-  console.log('[Auth Controller] Setting Cookie:', cookieOptions);
+  console.log('[Auth Controller] createSendToken -> Setting Cookie:', cookieOptions);
 
   res.cookie('jwt', token, cookieOptions);
 
@@ -76,12 +74,12 @@ export const login = catchAsync(async (req: AuthRequest, res: Response) => {
 });
 
 export const logout = catchAsync(async (req: AuthRequest, res: Response) => {
-  const isProduction = process.env.NODE_ENV === 'production' || env.CLIENT_URL.includes('vercel');
+  console.log('[Auth Controller] logout -> Clearing Cookie');
   res.cookie('jwt', 'loggedout', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction ? 'none' as const : 'lax' as const,
+    secure: true,
+    sameSite: 'none' as const,
   });
 
   res.status(200).json({ success: true, message: 'Logged out successfully' });

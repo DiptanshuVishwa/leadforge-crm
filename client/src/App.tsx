@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { useThemeStore } from './store/themeStore';
+import { useAuthStore } from './store/authStore';
 
 // Components
 import { DashboardLayout } from './components/layout/DashboardLayout';
@@ -25,6 +26,11 @@ const queryClient = new QueryClient({
 
 function App() {
   const { isDarkMode } = useThemeStore();
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   useEffect(() => {
     if (isDarkMode) {

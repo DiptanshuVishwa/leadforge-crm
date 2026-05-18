@@ -32,10 +32,13 @@ export const Login = () => {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       setIsLoading(true);
+      console.log('[Login Page] Submitting credentials...');
       const res = await loginFn(data);
+      console.log('[Login Page] API success! Calling setAuth with user:', res.data.user);
       setAuth(res.data.user, res.token);
       toast.success('Logged in successfully');
-      navigate('/dashboard');
+      console.log('[Login Page] Navigating to /dashboard');
+      navigate('/dashboard', { replace: true });
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Login failed');
     } finally {
