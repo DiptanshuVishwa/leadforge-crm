@@ -29,7 +29,7 @@ app.use('/api', limiter);
 // CORS
 app.use(
   cors({
-    origin: env.CLIENT_URL,
+    origin: true, // This reflects the request origin, allowing cross-domain cookies from any frontend URL
     credentials: true,
   })
 );
