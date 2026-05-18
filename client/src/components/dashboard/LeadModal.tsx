@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const leadSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Invalid email address'),
-  status: z.enum(['New', 'Contacted', 'Qualified', 'Lost']).default('New'),
+  status: z.enum(['New', 'Contacted', 'Qualified', 'Lost']),
   source: z.enum(['Website', 'Instagram', 'Referral']),
 });
 
