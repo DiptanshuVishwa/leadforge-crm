@@ -11,6 +11,12 @@ import { env } from './config/env';
 
 const app = express();
 
+app.set('trust proxy', 1);
+
+app.get('/', (req, res) => {
+  res.status(200).send('LeadForge API is running');
+});
+
 // Security Middlewares
 app.use(helmet());
 
